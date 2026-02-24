@@ -1,0 +1,94 @@
+/* General reset and font */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #f8faff; /* Light blueish background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: 600;
+}
+.header {
+    width: 100%;
+    max-width: 450px;
+    padding: 120px 20px 0 20px;
+    text-align: center;
+}
+/* Form Container */
+form {
+    background: #ffffff;
+    padding: 30px 30px 0;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+}
+
+/* Typography for labels */
+label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+/* Input Fields & Select Box */
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #f8fafc;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+input:focus, select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Custom styling for the Select dropdown to match inputs */
+select {
+    appearance: none;
+    cursor: pointer;
+}
+
+/* Submit Button - Matching the Portal Blue */
+button {
+    margin-top: 24px;
+    padding: 14px;
+    background-color: #3b82f6; /* Bright brand blue */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #2563eb;
+}
+
+/* Optional: Add a header style if you want the title above the form */
+.form-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.form-header h2 {
+    margin: 0;
+    color: #1a202c;
+    font-size: 1.5rem;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthCare Portal - Sign In</title>
+    <link rel="stylesheet" href="../Style css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-icon"><img src="../Images/icon.webp" alt="HealthCare LOGO"></div>
+            <h1>HealthCare Portal</h1>
+            <p>Secure medical appointment management</p>
+        </header>
+
+        <main class="login-card">
+            <ul class="role-list">
+                <li class="role-item active" data-role="patient">Patient</li>
+                <li class="role-item" data-role="doctor">Doctor</li>
+                <li class="role-item" data-role="admin">Admin</li>        
+            </ul>
+
+            <form action="../Process/login_process.php" method="POST">
+                <div class="input-group">
+                    <label>Email / Phone</label>
+                    <input type="text" name="login" placeholder="Enter email or phone number"
+                    pattern="(^[^\s@]+@[^\s@]+\.[^\s@]+$)|(^[0-9]{8,15}$)"
+                    title="Enter a valid email or phone number">
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="Enter your password">
+                </div>
+                <button type="submit" class="sign-in-btn">Sign In</button>
+            </form>
+
+            <div class="demo-box">
+                <p>Demo Credentials:</p>
+                <p>Email: <span>akrembarhoumi313@gmail.com</span></p>
+                <p>Password: <span>123456789</span></p>
+            </div>
+            <div class="switch">
+                Don't have an account? <a href="../Web_Pages/register.html">Register</a>
+            </div>
+        </main>
+
+        <footer class="footer">
+            This is a demo application. No real medical data is stored.
+        </footer>
+    </div>
+        <script>
+        const items = document.querySelectorAll(".role-item");
+        const roleInput = document.getElementById("roleInput");
+
+        items.forEach(item => {
+            item.addEventListener("click", () => {
+
+                items.forEach(i => i.classList.remove("active"));
+                item.classList.add("active");
+
+                roleInput.value = item.dataset.role;
+            });
+        });
+    </script>
+</body>
+</html>

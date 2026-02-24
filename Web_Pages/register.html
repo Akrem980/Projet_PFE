@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthCare Portal - Sign Up</title>
+    <link rel="stylesheet" href="../Style css/style.css">
+    <link rel="stylesheet" href="../Style css/style2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-icon"><img src="../Images/icon.webp" alt="HealthCare LOGO"></div>
+            <h1>HealthCare Portal</h1>
+            <p>Secure medical appointment management</p>
+        </header>
+
+    <form action="../Process/register_process.php" method="POST">
+        <label for="firstName">First name</label>
+        <input type="text" id="firstName" name="firstName" placeholder="First name" required>
+
+        <label for="lastName">Last name</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Last name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+
+        <label for="phone">Phone number</label>
+        <input type="tel" id="phone" name="phone" placeholder="Phone number" required>
+        
+        <ul class="role-list">
+            <li class="role-item active" data-role="patient">Patient</li>
+            <li class="role-item" data-role="doctor">Doctor</li>
+            <li class="role-item" data-role="admin">Admin</li>
+        </ul>
+
+        <input type="hidden" name="role" id="roleInput" value="patient">
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+        
+        <button type="submit">Register</button>
+    </form>
+    <script>
+        const items = document.querySelectorAll(".role-item");
+        const roleInput = document.getElementById("roleInput");
+
+            items.forEach(item => {
+            item.addEventListener("click", () => {
+
+            items.forEach(i => i.classList.remove("active"));
+            item.classList.add("active");
+
+            roleInput.value = item.dataset.role;
+        });
+    });
+    </script>
+</body>
+</html>

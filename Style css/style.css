@@ -1,0 +1,194 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    /* Soft blue/white gradient background */
+    background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #334155;
+}
+
+.container {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Header Styles */
+.logo-icon {
+    background-color: #3b82f6;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 24px;
+}
+
+.header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.header p {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+/* Card Styles */
+.login-card {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    text-align: left;
+}
+
+.login-card h2 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 20px;
+}
+/* Container for the list */
+.role-list {
+    list-style: none;
+    display: flex;
+    background-color: #f1f5f9; /* Light grey track */
+    padding: 4px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    justify-content: space-between;
+}
+
+/* Individual items */
+.role-item {
+    flex: 1;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #475569;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+/* The "Active" state from your screenshots */
+.role-item.active {
+    background-color: #ffffff;
+    color: #1e293b;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Hover effect for better UX */
+.role-item:hover:not(.active) {
+    color: #3b82f6;
+}
+/* Form Inputs */
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #f8fafc;
+    font-size: 14px;
+}
+
+.sign-in-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.sign-in-btn:hover {
+    background-color: #2563eb;
+}
+
+/* Demo Credentials */
+.demo-box {
+    margin-top: 20px;
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.6;
+}
+
+.demo-box span {
+    color: #334155;
+}
+
+/* Footer */
+.footer {
+    margin-top: 20px;
+    font-size: 11px;
+    color: #94a3b8;
+}
+/* Update your existing .logo-icon selector */
+.logo-icon {
+    background-color: #3b82f6; /* You can remove this line if you want the icon's own background to show */
+    width: 60px;               /* Slightly larger to accommodate the new icon detail */
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    overflow: hidden;          /* Keeps the image inside the rounded corners */
+    padding: 5px;              /* Space between the heart and the edge of the blue box */
+}
+
+/* Add this new rule to control the image inside the box */
+.logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.switch a{
+color:#3b82f6;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.switch{
+    font-size: 16px;
+    font-weight: 600;
+}
