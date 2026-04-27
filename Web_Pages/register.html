@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="../Style css/style.css">
     <link rel="stylesheet" href="../Style css/style2.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .flash-msg {
+            padding: 10px 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .flash-msg.error   { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+        .flash-msg.success { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+        .doctor-fields { display: none; }
+        .doctor-fields.visible { display: block; }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -16,48 +29,137 @@
             <p>Secure medical appointment management</p>
         </header>
 
-    <form action="../Process/register_process.php" method="POST">
-        <label for="firstName">First name</label>
-        <input type="text" id="firstName" name="firstName" placeholder="First name" required>
+        <main class="login-card">
+            <div id="flashMsg" style="display:none" class="flash-msg"></div>
 
-        <label for="lastName">Last name</label>
-        <input type="text" id="lastName" name="lastName" placeholder="Last name" required>
+            <form action="../Process/register_process.php" method="POST" id="registerForm">
 
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Email" required>
+                <div class="input-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="First name" required>
+                </div>
 
-        <label for="phone">Phone number</label>
-        <input type="tel" id="phone" name="phone" placeholder="Phone number" required>
-        
-        <ul class="role-list">
-            <li class="role-item active" data-role="patient">Patient</li>
-            <li class="role-item" data-role="doctor">Doctor</li>
-            <li class="role-item" data-role="admin">Admin</li>
-        </ul>
+                <div class="input-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Last name" required>
+                </div>
 
-        <input type="hidden" name="role" id="roleInput" value="patient">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                </div>
 
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Password" required>
+                <div class="input-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Phone number (8–15 digits)" required
+                        pattern="[0-9]{8,15}" title="Enter a valid phone number (8-15 digits)">
+                </div>
 
-        <label for="confirmPassword">Confirm Password</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
-        
-        <button type="submit">Register</button>
-    </form>
+                <div style="margin-bottom: 16px;">
+                    <label style="display:block;margin-bottom:8px;font-size:14px;font-weight:500;">Role</label>
+                    <ul class="role-list">
+                        <li class="role-item active" data-role="patient">Patient</li>
+                        <li class="role-item" data-role="doctor">Doctor</li>
+                    </ul>
+                </div>
+
+                <input type="hidden" name="role" id="roleInput" value="patient">
+
+                <!-- Doctor-only fields -->
+                <div class="doctor-fields" id="doctorFields">
+                    <div class="input-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city" placeholder="Your city">
+                    </div>
+                    <div class="input-group">
+                        <label for="specialty">Medical Specialty</label>
+                        <select name="specialty" id="specialty">
+                            <option value="">Select Specialty</option>
+                            <option value="Cardiology">Cardiology</option>
+                            <option value="Dermatology">Dermatology</option>
+                            <option value="General Medicine">General Medicine</option>
+                            <option value="Orthopedics">Orthopedics</option>
+                            <option value="Pediatrics">Pediatrics</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Minimum 6 characters" required minlength="6">
+                </div>
+
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required minlength="6">
+                </div>
+
+                <div id="pwError" style="color:#991b1b;font-size:13px;margin-bottom:10px;display:none">Passwords do not match.</div>
+
+                <button type="submit" class="sign-in-btn">Create Account</button>
+            </form>
+
+            <div class="switch" style="margin-top:16px;">
+                Already have an account? <a href="../Web_Pages/HealthCare.html">Sign In</a>
+            </div>
+        </main>
+
+        <footer class="footer">
+            This is a demo application. No real medical data is stored.
+        </footer>
+    </div>
+
     <script>
-        const items = document.querySelectorAll(".role-item");
-        const roleInput = document.getElementById("roleInput");
+        // Flash message from URL
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            const msg  = params.get('message');
+            const type = params.get('type') || 'error';
+            if (msg) {
+                const el = document.getElementById('flashMsg');
+                el.textContent = decodeURIComponent(msg);
+                el.className   = 'flash-msg ' + type;
+                el.style.display = 'block';
+            }
+        })();
 
-            items.forEach(item => {
+        // Role tabs
+        const roleItems = document.querySelectorAll(".role-item");
+        const roleInput  = document.getElementById("roleInput");
+        const doctorFields = document.getElementById("doctorFields");
+        const cityInput    = document.getElementById("city");
+        const specInput    = document.getElementById("specialty");
+
+        roleItems.forEach(item => {
             item.addEventListener("click", () => {
-
-            items.forEach(i => i.classList.remove("active"));
-            item.classList.add("active");
-
-            roleInput.value = item.dataset.role;
+                roleItems.forEach(i => i.classList.remove("active"));
+                item.classList.add("active");
+                const role = item.dataset.role;
+                roleInput.value = role;
+                if (role === 'doctor') {
+                    doctorFields.classList.add('visible');
+                    cityInput.required    = true;
+                    specInput.required    = true;
+                } else {
+                    doctorFields.classList.remove('visible');
+                    cityInput.required    = false;
+                    specInput.required    = false;
+                }
+            });
         });
-    });
+
+        // Password match check
+        document.getElementById("registerForm").addEventListener("submit", function(e) {
+            const pw   = document.getElementById("password").value;
+            const conf = document.getElementById("confirmPassword").value;
+            const err  = document.getElementById("pwError");
+            if (pw !== conf) {
+                e.preventDefault();
+                err.style.display = "block";
+            } else {
+                err.style.display = "none";
+            }
+        });
     </script>
 </body>
 </html>
